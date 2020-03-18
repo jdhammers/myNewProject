@@ -1,0 +1,16 @@
+*** Settings ***
+Documentation  This is a test
+Resource  ../../Resources/PageObjects/homepage.txt
+
+
+Suite Setup  Open homepage
+Test Teardown  Close All Browsers
+
+*** Test Cases ***
+Demo test case
+   [Documentation]  user can sign up to donate
+   [Tags]  Smoke
+   Given I am on Homepage
+   When I go to Contact Us page
+   Then Contact Us Form Displays
+

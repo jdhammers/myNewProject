@@ -1,0 +1,41 @@
+*** Settings ***
+Documentation  Smoke
+Library  SeleniumLibrary
+Library  OperatingSystem
+Library  Collections
+Library  DateTime
+Library  String
+
+
+*** Variables ***
+${HOMEPAGE_URL}  https://qalearningcenter.com/
+${BROWSER}  gc
+${SITE_LOGO}  (//div[@data-aid="HEADER_LOGO_RENDERED"])[1]
+${CONTACT_US}  //div[@id="bs-3"]//a[@href="/contact-us"]
+
+*** Keywords ***
+Open homepage
+    [Documentation]  Opens specified browser and loads home page
+    open browser  ${HOMEPAGE_URL}  ${BROWSER}
+    maximize browser window
+    @{window_size}=  get window size
+    log many  @{window_size}
+
+I am on Homepage
+    [Documentation]  Check Site Logo Image
+    element should be visible  ${SITE_LOGO}
+    capture page screenshot
+
+I go to Contact Us page
+    [Documentation]  clicking give button
+    wait until element is visible  ${CONTACT_US}
+    click element  ${CONTACT_US}
+
+Contact Us Form Displays
+    [Documentation]  verifies form displays
+    wait until element is visible  ${CONTACT_US}
+
+
+
+
+
